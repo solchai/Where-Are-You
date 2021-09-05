@@ -138,12 +138,92 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="V1q-dZ-hWn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1eT-Hh-XUx"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1eT-Hh-XUx">
+                            <connections>
+                                <action selector="addFriend:" destination="2cF-Gu-cEe" id="cCt-LC-qQd"/>
+                                <segue destination="5Xg-F8-biy" kind="presentation" identifier="showAddPersonForm" id="8Ed-wq-fKj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBr-Qd-X0B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1870" y="129"/>
+        </scene>
+        <!--Add Friend Form View Controller-->
+        <scene sceneID="HLi-B1-AwY">
+            <objects>
+                <viewController id="5Xg-F8-biy" customClass="AddFriendFormViewController" customModule="CD__CB__CL" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cdy-Rr-GBx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0a-7k-Fgl">
+                                <rect key="frame" x="15" y="20" width="68.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                <connections>
+                                    <action selector="dismissForm:" destination="5Xg-F8-biy" eventType="touchUpInside" id="X6G-yB-sRR"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="OdD-ea-PKP">
+                                <rect key="frame" x="15" y="20" width="384" height="410"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKZ-Oh-kw4">
+                                        <rect key="frame" x="102" y="0.0" width="180" height="300"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="V12-9D-KCf"/>
+                                            <constraint firstAttribute="height" constant="300" id="d5H-cy-gew"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Add a photo"/>
+                                        <connections>
+                                            <action selector="pickFriendImage:" destination="Udi-C5-A5R" eventType="touchUpInside" id="smu-1B-5rx"/>
+                                            <action selector="pickFriendPhoto:" destination="5Xg-F8-biy" eventType="touchUpInside" id="VWQ-Ef-PlM"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwc-Nu-psh">
+                                        <rect key="frame" x="92" y="315" width="200" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="kMA-n3-vPL"/>
+                                            <constraint firstAttribute="width" constant="200" id="toU-j1-iSw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SzO-28-vpY">
+                                        <rect key="frame" x="92" y="360" width="200" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="FYY-p4-g7v"/>
+                                            <constraint firstAttribute="height" constant="50" id="QXg-Uc-Mke"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Add Friend"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gdL-MG-pLu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gdL-MG-pLu" firstAttribute="trailing" secondItem="OdD-ea-PKP" secondAttribute="trailing" constant="15" id="7YC-fV-bpE"/>
+                            <constraint firstItem="OdD-ea-PKP" firstAttribute="leading" secondItem="gdL-MG-pLu" secondAttribute="leading" constant="15" id="EHx-3o-0Ub"/>
+                            <constraint firstItem="P0a-7k-Fgl" firstAttribute="top" secondItem="gdL-MG-pLu" secondAttribute="top" constant="20" id="QCO-SS-hrB"/>
+                            <constraint firstItem="OdD-ea-PKP" firstAttribute="top" secondItem="gdL-MG-pLu" secondAttribute="top" constant="20" id="RAf-1i-a7X"/>
+                            <constraint firstItem="P0a-7k-Fgl" firstAttribute="leading" secondItem="gdL-MG-pLu" secondAttribute="leading" constant="15" id="whN-ks-Qye"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="SzO-28-vpY" id="er1-H0-Z1r"/>
+                        <outlet property="imageButton" destination="JKZ-Oh-kw4" id="jge-t6-8Lu"/>
+                        <outlet property="nameField" destination="gwc-Nu-psh" id="4pI-5i-caY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gVl-Yf-1pu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Udi-C5-A5R" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2724.6376811594205" y="128.57142857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oEy-YT-rr2">

@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension Device {
+extension Friend {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Device> {
-        return NSFetchRequest<Device>(entityName: "Device")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Friend> {
+        return NSFetchRequest<Friend>(entityName: "Friend")
     }
 
     @NSManaged public var name: String?
@@ -21,6 +21,6 @@ extension Device {
 
 }
 
-extension Device : Identifiable {
+extension Friend : Identifiable {
 
 }

@@ -11,7 +11,7 @@ private let reuseIdentifier = "CentralViewCell"
 
 class CentralViewController: UICollectionViewController {
     
-    var devices = [Device]()
+    static var friends = [Friend]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +46,8 @@ class CentralViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        if devices.count > 0 {
-            return devices.count
+        if CentralViewController.friends.count > 0 {
+            return CentralViewController.friends.count
         } else {
             return 1
         }
@@ -56,13 +56,13 @@ class CentralViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CentralViewCell
         
-        if devices.count > 0 {
-            cell.nameLabel.text = devices[indexPath.row].name ?? "Error"
+        if CentralViewController.friends.count > 0 {
+            cell.nameLabel.text = CentralViewController.friends[indexPath.row].name ?? "Error"
             
             let image = UIImage(named: "iAmHere")
             cell.ownerImageView.image = image
         } else {
-            cell.nameLabel.text = "Add Friend"
+            cell.nameLabel.text = "Add a friend"
             
             let image = UIImage(systemName: "plus")
             cell.ownerImageView.image = image
@@ -78,17 +78,21 @@ class CentralViewController: UICollectionViewController {
         return cell
     }
     
+    @IBAction func addFriend(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "showAddPersonForm", sender: self)
+    }
     
-    
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using [segue destinationViewController].
+//        // Pass the selected object to the new view controller.
+//        if segue.identifier == "showAddPersonForm" {
+//            let destinationVC = segue.destination as! AddFriendFormViewController
+//        }
+//
+//    }
 
 
     // MARK: UICollectionViewDelegate
@@ -121,6 +125,13 @@ class CentralViewController: UICollectionViewController {
     
     }
     */
-
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if CentralViewController.friends.count > 0 {
+            
+        } else {
+            performSegue(withIdentifier: "showAddPersonForm", sender: self)
+        }
+    }
 }
 

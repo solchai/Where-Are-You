@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 
 
-public class Device: NSManagedObject {
+public class Friend: NSManagedObject {
 
 }
