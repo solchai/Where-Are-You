@@ -57,6 +57,7 @@ class AddFriendFormViewController: UIViewController {
             nameField.attributedPlaceholder = NSAttributedString(string: "Enter Name!", attributes: [.foregroundColor: UIColor.red])
             return
         }
+        nameField.resignFirstResponder()
         
         delegate?.successfullyAddedFriend(named: name, with: ownerImage)
         dismiss(animated: true, completion: nil)
@@ -81,10 +82,6 @@ extension AddFriendFormViewController: UIImagePickerControllerDelegate, UINaviga
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-          return
-        }
         
         guard let image = info[.editedImage] as? UIImage else {
             return imagePickerControllerDidCancel(picker)
