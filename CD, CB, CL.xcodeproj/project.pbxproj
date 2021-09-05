@@ -15,7 +15,7 @@
 		500CC25526E3C3ED005A2047 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 500CC25326E3C3ED005A2047 /* LaunchScreen.storyboard */; };
 		500CC25D26E42CF8005A2047 /* CentralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC25C26E42CF8005A2047 /* CentralViewController.swift */; };
 		500CC26026E42FF5005A2047 /* CentralViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC25F26E42FF5005A2047 /* CentralViewCell.swift */; };
-		500CC26326E4380F005A2047 /* DeviceModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26126E4380F005A2047 /* DeviceModel.xcdatamodeld */; };
+		500CC26326E4380F005A2047 /* FriendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26126E4380F005A2047 /* FriendModel.xcdatamodeld */; };
 		500CC26626E43BF4005A2047 /* Device+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26426E43BF4005A2047 /* Device+CoreDataClass.swift */; };
 		500CC26726E43BF4005A2047 /* Device+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26526E43BF4005A2047 /* Device+CoreDataProperties.swift */; };
 		500CC26926E4807C005A2047 /* AddFriendFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26826E4807C005A2047 /* AddFriendFormViewController.swift */; };
@@ -72,7 +72,7 @@
 				500CC26426E43BF4005A2047 /* Device+CoreDataClass.swift */,
 				500CC24826E3C3E8005A2047 /* AppDelegate.swift */,
 				500CC24A26E3C3E8005A2047 /* SceneDelegate.swift */,
-				500CC26126E4380F005A2047 /* DeviceModel.xcdatamodeld */,
+				500CC26126E4380F005A2047 /* FriendModel.xcdatamodeld */,
 				500CC25E26E42D03005A2047 /* VC */,
 				500CC24E26E3C3E8005A2047 /* Main.storyboard */,
 				500CC25126E3C3ED005A2047 /* Assets.xcassets */,
@@ -172,7 +172,7 @@
 				500CC25D26E42CF8005A2047 /* CentralViewController.swift in Sources */,
 				500CC26726E43BF4005A2047 /* Device+CoreDataProperties.swift in Sources */,
 				500CC24B26E3C3E8005A2047 /* SceneDelegate.swift in Sources */,
-				500CC26326E4380F005A2047 /* DeviceModel.xcdatamodeld in Sources */,
+				500CC26326E4380F005A2047 /* FriendModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,11 +324,14 @@
 				DEVELOPMENT_TEAM = CBV86TDR6N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CD, CB, CL/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take picture of friend";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need photot library access to pick a photo for a friend";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -352,11 +355,14 @@
 				DEVELOPMENT_TEAM = CBV86TDR6N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CD, CB, CL/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take picture of friend";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need photot library access to pick a photo for a friend";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,13 +400,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		500CC26126E4380F005A2047 /* DeviceModel.xcdatamodeld */ = {
+		500CC26126E4380F005A2047 /* FriendModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				500CC26226E4380F005A2047 /* Model.xcdatamodel */,
 			);
 			currentVersion = 500CC26226E4380F005A2047 /* Model.xcdatamodel */;
-			path = DeviceModel.xcdatamodeld;
+			path = FriendModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

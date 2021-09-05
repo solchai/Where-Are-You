@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 private let reuseIdentifier = "CentralViewCell"
+private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
 class CentralViewController: UICollectionViewController {
     
-    static var friends = [Friend]()
+    var friends = [Friend]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,7 @@ class CentralViewController: UICollectionViewController {
         // Do any additional setup after loading the view.
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 130.0, height: 210.0)
+        layout.itemSize = CGSize(width: self.view.bounds.size.width/3.0 - 16, height: 210)
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -33,7 +35,7 @@ class CentralViewController: UICollectionViewController {
         collectionView.setCollectionViewLayout(layout, animated: false)
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         
-        
+        loadItems()
     }
 
     // MARK: UICollectionViewDataSource
@@ -46,8 +48,8 @@ class CentralViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        if CentralViewController.friends.count > 0 {
-            return CentralViewController.friends.count
+        if friends.count > 0 {
+            return friends.count
         } else {
             return 1
         }
@@ -56,20 +58,19 @@ class CentralViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CentralViewCell
         
-        if CentralViewController.friends.count > 0 {
-            cell.nameLabel.text = CentralViewController.friends[indexPath.row].name ?? "Error"
-            
-            let image = UIImage(named: "iAmHere")
-            cell.ownerImageView.image = image
+        if friends.count > 0 {
+            cell.nameLabel.text = friends[indexPath.row].name
+            if let imageData = friends[indexPath.row].ownerImage, let image = UIImage(data: imageData) {
+                cell.ownerImageView.image = image
+            } else {
+                cell.ownerImageView.image = UIImage(systemName: "person.fill.questionmark")!
+            }
         } else {
             cell.nameLabel.text = "Add a friend"
-            
-            let image = UIImage(systemName: "plus")
-            cell.ownerImageView.image = image
+            cell.ownerImageView.image = UIImage(systemName: "plus")
         }
         
         cell.nameLabel.layer.zPosition = 1
-        cell.nameLabel.layer.cornerRadius = 100
         cell.nameLabel.layer.masksToBounds = true
         cell.nameLabel.layer.cornerRadius = 5
 //        cell.ownerImageView.layer.borderWidth = 10
@@ -85,53 +86,67 @@ class CentralViewController: UICollectionViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using [segue destinationViewController].
-//        // Pass the selected object to the new view controller.
-//        if segue.identifier == "showAddPersonForm" {
-//            let destinationVC = segue.destination as! AddFriendFormViewController
-//        }
-//
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "showAddPersonForm" {
+            let destinationVC = segue.destination as! AddFriendFormViewController
+            destinationVC.delegate = self
+        }
+
+    }
 
 
     // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if CentralViewController.friends.count > 0 {
+        if friends.count > 0 {
             
         } else {
             performSegue(withIdentifier: "showAddPersonForm", sender: self)
         }
     }
+    
+    // MARK: CoreData methods
+    
+    private func saveFriends() {
+        do {
+            try context.save()
+        } catch let error {
+            print("Error saving context \(error.localizedDescription)")
+        }
+        
+        collectionView.reloadData()
+    }
+    
+    private func loadItems(with request: NSFetchRequest<Friend> = Friend.fetchRequest()) {
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        do {
+            friends = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+        
+        collectionView.reloadData()
+    }
 }
 
+extension CentralViewController: AddFriendDelegate {
+    func successfullyAddedFriend(named name: String, with image: UIImage?) {
+        let newFriend = Friend(context: context)
+        newFriend.name = name
+        if let image = image {
+            newFriend.ownerImage = convertImageToData(with: image)
+        } else {
+            newFriend.ownerImage = UIImage(systemName: "person.fill.questionmark")!.pngData()
+        }
+        
+        friends.append(newFriend)
+        saveFriends()
+    }
+    
+    private func convertImageToData(with image: UIImage) -> Data? {
+        return image.pngData()
+    }
+}

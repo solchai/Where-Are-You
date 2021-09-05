@@ -7,13 +7,20 @@
 
 import UIKit
 
+protocol AddFriendDelegate {
+    func successfullyAddedFriend(named name: String, with image: UIImage?)
+}
+
 class AddFriendFormViewController: UIViewController {
     
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
-    var imagePickerController: UIImagePickerController? = nil
+    var imagePickerController: UIImagePickerController?
+    var delegate: AddFriendDelegate?
+    var ownerImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,20 +32,36 @@ class AddFriendFormViewController: UIViewController {
         addButton.tintColor = .white
         addButton.layer.masksToBounds = true
         addButton.layer.cornerRadius = 25
+
     }
     
-    @IBAction func dismissForm(_ sender: UIButton) {
+    @IBAction func cancelClicked(_ sender: UIButton) {
+        print("cancel clicked")
         self.dismiss(animated: true, completion: nil)
     }
     
+    
     @IBAction func pickFriendPhoto(_ sender: UIButton) {
+        print("pick photo")
         imagePickerController = UIImagePickerController()
         imagePickerController?.delegate = self
         imagePickerController?.allowsEditing = true
-        imagePickerController?.mediaTypes = ["public.image", "public.movie"]
-        imagePickerController?.sourceType = .camera
-        self.navigationController?.present(imagePickerController!, animated: true, completion: nil)
+        imagePickerController?.sourceType = .photoLibrary
+        if let imagePickerController = imagePickerController {
+            present(imagePickerController, animated: true, completion: nil)
+        }
     }
+    
+    @IBAction func addFriendClicked(_ sender: UIButton) {
+        guard let name = nameField.text, name.count > 0 else {
+            nameField.attributedPlaceholder = NSAttributedString(string: "Enter Name!", attributes: [.foregroundColor: UIColor.red])
+            return
+        }
+        
+        delegate?.successfullyAddedFriend(named: name, with: ownerImage)
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     /*
     // MARK: - Navigation
@@ -67,7 +90,19 @@ extension AddFriendFormViewController: UIImagePickerControllerDelegate, UINaviga
             return imagePickerControllerDidCancel(picker)
         }
         
-        imageButton.setImage(image, for: .normal)
+        ownerImage = image
+        
+        setButtonImage(image)
         imageButton.titleLabel?.text = ""
+        imageButton.backgroundColor = .none
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    private func setButtonImage(_ image: UIImage) {
+        imageButton.setImage(image, for: .normal)
+        imageButton.setImage(image, for: .selected)
+        imageButton.setImage(image, for: .highlighted)
+        imageButton.setImage(image, for: .focused)
     }
 }
