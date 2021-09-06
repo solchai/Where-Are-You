@@ -19,6 +19,11 @@
 		500CC26626E43BF4005A2047 /* Friend+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26426E43BF4005A2047 /* Friend+CoreDataClass.swift */; };
 		500CC26726E43BF4005A2047 /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26526E43BF4005A2047 /* Friend+CoreDataProperties.swift */; };
 		500CC26926E4807C005A2047 /* AddFriendFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26826E4807C005A2047 /* AddFriendFormViewController.swift */; };
+		500CC26B26E5A858005A2047 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26A26E5A858005A2047 /* DeviceListViewController.swift */; };
+		500CC26E26E5ABE7005A2047 /* Device+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26C26E5ABE7005A2047 /* Device+CoreDataClass.swift */; };
+		500CC26F26E5ABE7005A2047 /* Device+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC26D26E5ABE7005A2047 /* Device+CoreDataProperties.swift */; };
+		500CC27226E5B102005A2047 /* DeviceListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC27126E5B102005A2047 /* DeviceListViewCell.swift */; };
+		50A2A91926E5D76C00D9CF04 /* AddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2A91826E5D76C00D9CF04 /* AddDeviceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,11 @@
 		500CC26426E43BF4005A2047 /* Friend+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataClass.swift"; sourceTree = "<group>"; };
 		500CC26526E43BF4005A2047 /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		500CC26826E4807C005A2047 /* AddFriendFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendFormViewController.swift; sourceTree = "<group>"; };
+		500CC26A26E5A858005A2047 /* DeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
+		500CC26C26E5ABE7005A2047 /* Device+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+CoreDataClass.swift"; sourceTree = "<group>"; };
+		500CC26D26E5ABE7005A2047 /* Device+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		500CC27126E5B102005A2047 /* DeviceListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListViewCell.swift; sourceTree = "<group>"; };
+		50A2A91826E5D76C00D9CF04 /* AddDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,11 +78,9 @@
 		500CC24726E3C3E8005A2047 /* CD, CB, CL */ = {
 			isa = PBXGroup;
 			children = (
-				500CC26526E43BF4005A2047 /* Friend+CoreDataProperties.swift */,
-				500CC26426E43BF4005A2047 /* Friend+CoreDataClass.swift */,
+				500CC27026E5AC07005A2047 /* DataModel */,
 				500CC24826E3C3E8005A2047 /* AppDelegate.swift */,
 				500CC24A26E3C3E8005A2047 /* SceneDelegate.swift */,
-				500CC26126E4380F005A2047 /* FriendModel.xcdatamodeld */,
 				500CC25E26E42D03005A2047 /* VC */,
 				500CC24E26E3C3E8005A2047 /* Main.storyboard */,
 				500CC25126E3C3ED005A2047 /* Assets.xcassets */,
@@ -89,8 +97,23 @@
 				500CC25C26E42CF8005A2047 /* CentralViewController.swift */,
 				500CC25F26E42FF5005A2047 /* CentralViewCell.swift */,
 				500CC26826E4807C005A2047 /* AddFriendFormViewController.swift */,
+				500CC26A26E5A858005A2047 /* DeviceListViewController.swift */,
+				500CC27126E5B102005A2047 /* DeviceListViewCell.swift */,
+				50A2A91826E5D76C00D9CF04 /* AddDeviceViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		500CC27026E5AC07005A2047 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				500CC26C26E5ABE7005A2047 /* Device+CoreDataClass.swift */,
+				500CC26D26E5ABE7005A2047 /* Device+CoreDataProperties.swift */,
+				500CC26526E43BF4005A2047 /* Friend+CoreDataProperties.swift */,
+				500CC26426E43BF4005A2047 /* Friend+CoreDataClass.swift */,
+				500CC26126E4380F005A2047 /* FriendModel.xcdatamodeld */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,11 +188,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				500CC24D26E3C3E8005A2047 /* ViewController.swift in Sources */,
+				500CC26F26E5ABE7005A2047 /* Device+CoreDataProperties.swift in Sources */,
+				50A2A91926E5D76C00D9CF04 /* AddDeviceViewController.swift in Sources */,
 				500CC26926E4807C005A2047 /* AddFriendFormViewController.swift in Sources */,
+				500CC27226E5B102005A2047 /* DeviceListViewCell.swift in Sources */,
 				500CC26026E42FF5005A2047 /* CentralViewCell.swift in Sources */,
 				500CC24926E3C3E8005A2047 /* AppDelegate.swift in Sources */,
 				500CC26626E43BF4005A2047 /* Friend+CoreDataClass.swift in Sources */,
+				500CC26E26E5ABE7005A2047 /* Device+CoreDataClass.swift in Sources */,
 				500CC25D26E42CF8005A2047 /* CentralViewController.swift in Sources */,
+				500CC26B26E5A858005A2047 /* DeviceListViewController.swift in Sources */,
 				500CC26726E43BF4005A2047 /* Friend+CoreDataProperties.swift in Sources */,
 				500CC24B26E3C3E8005A2047 /* SceneDelegate.swift in Sources */,
 				500CC26326E4380F005A2047 /* FriendModel.xcdatamodeld in Sources */,

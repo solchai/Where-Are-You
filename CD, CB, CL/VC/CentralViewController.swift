@@ -92,7 +92,13 @@ class CentralViewController: UICollectionViewController {
         if segue.identifier == "showAddPersonForm" {
             let destinationVC = segue.destination as! AddFriendFormViewController
             destinationVC.delegate = self
+        } else if segue.identifier == "showDevices" {
+            let destinationVC = segue.destination as! DeviceListViewController
+            
+            let index = collectionView.indexPathsForSelectedItems?.first
+            destinationVC.owner = friends[(index?.row)!]
         }
+        
 
     }
 
@@ -100,9 +106,8 @@ class CentralViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if friends.count > 0 {
-            
-        } else {
+        
+        if friends.count <= 0 {
             performSegue(withIdentifier: "showAddPersonForm", sender: self)
         }
     }
