@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import CoreBluetooth
+
+let serviceUUID = CBUUID(string: "WhereAreYou")
 
 protocol AddDeviceDelegate {
     func successfullyAddedDevice(deviceType: String, uuid: String)
@@ -21,8 +24,14 @@ class AddDeviceViewController: UIViewController {
     
     @IBOutlet weak var positiveButton: UIButton!
     
+    var centralManager: CBCentralManager!
+    var delegate: AddDeviceDelegate?
+    var owner: Friend?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        centralManager = CBCentralManager(delegate: self, queue: nil)
         
         deviceImageView.image = UIImage(named: "iAmHere")
         
@@ -48,3 +57,34 @@ class AddDeviceViewController: UIViewController {
     
 
 }
+
+extension AddDeviceViewController:CBCentralManagerDelegate {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+          case .unknown:
+            print("central.state is .unknown")
+          case .resetting:
+            print("central.state is .resetting")
+          case .unsupported:
+            print("central.state is .unsupported")
+          case .unauthorized:
+            print("central.state is .unauthorized")
+          case .poweredOff:
+            print("central.state is .poweredOff")
+          case .poweredOn:
+            print("central.state is .poweredOn")
+            statusLabel.text = "Searching..."
+            central.scanForPeripherals(withServices: [serviceUUID])
+        }
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        if let pName = peripheral.name, pName.contains((owner?.name)!) {
+            print(advertisementData)
+            
+        }
+    }
+    
+    
+}
+

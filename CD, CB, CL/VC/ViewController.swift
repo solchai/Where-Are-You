@@ -20,6 +20,10 @@ class ViewController: UIViewController {
         
         peripheralButton.imageView?.alpha = 0.1
         peripheralButton.titleLabel?.font = UIFont(name: "Helvetica", size: 28.0)
+        
+        if let name = UserDefaults.standard.object(forKey: "peripheralName") as? String {
+            navigationItem.title = "Welcome back \(name)"
+        }
     }
 
 

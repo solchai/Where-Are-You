@@ -56,6 +56,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="openPeripheralView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Jk-mC-ILe"/>
+                                            <segue destination="GO7-m8-RNd" kind="show" id="hv9-hr-6l9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -148,6 +149,43 @@
             </objects>
             <point key="canvasLocation" x="1870" y="129"/>
         </scene>
+        <!--Be Seen!-->
+        <scene sceneID="PCg-02-KfI">
+            <objects>
+                <viewController id="GO7-m8-RNd" customClass="PeripheralViewController" customModule="CD__CB__CL" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="heG-eT-WhL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GY9-J9-hQ2">
+                                <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="NS9-Xs-DtO"/>
+                                    <constraint firstAttribute="height" constant="200" id="Pcw-9O-tOM"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="peripheralButtonClicked:" destination="GO7-m8-RNd" eventType="touchUpInside" id="Ibi-EI-Wj0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XVe-5H-rLK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GY9-J9-hQ2" firstAttribute="centerY" secondItem="heG-eT-WhL" secondAttribute="centerY" id="ffP-gB-Mva"/>
+                            <constraint firstItem="GY9-J9-hQ2" firstAttribute="centerX" secondItem="heG-eT-WhL" secondAttribute="centerX" id="lUQ-Hl-diJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Be Seen!" id="hcs-Fl-XHU"/>
+                    <connections>
+                        <outlet property="peripheralButton" destination="GY9-J9-hQ2" id="t5R-ji-jmo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aAo-K6-OTP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="834"/>
+        </scene>
         <!--Devices-->
         <scene sceneID="XVJ-nc-dkH">
             <objects>
@@ -218,23 +256,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Bja-Pb-0Xi">
-                                <rect key="frame" x="102" y="15" width="210" height="228.5"/>
+                                <rect key="frame" x="102" y="15" width="210" height="226"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uo2-5B-Mtt">
-                                        <rect key="frame" x="84.5" y="0.0" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="86.5" y="0.0" width="37.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p38-K1-gpT">
-                                        <rect key="frame" x="55" y="35.5" width="100" height="128"/>
+                                        <rect key="frame" x="55" y="33" width="100" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="m4C-Nj-0zH"/>
                                             <constraint firstAttribute="height" constant="100" id="zdw-bG-ps3"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XhA-Kt-QDM">
-                                        <rect key="frame" x="0.0" y="178.5" width="210" height="50"/>
+                                        <rect key="frame" x="0.0" y="176" width="210" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAQ-d2-5J3">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
